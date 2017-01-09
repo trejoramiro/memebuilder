@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate {
 
     @IBOutlet weak var selectCamera: UIBarButtonItem!
     @IBOutlet weak var selectLibrary: UIBarButtonItem!
@@ -26,7 +27,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
         cancelButton.isEnabled = false
         selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +48,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func resetView(_ sender: Any) {
+        topText.text = "TOP"
+        bottomText.text = "BOTTOM"
+        imageView.image = nil
+        
+        topText.isHidden = true
+        bottomText.isHidden = true
+        imageView.isHidden = true
+        
+        cancelButton.isEnabled = false
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // Add selected image to imageView
+        if let image = info["UIImagePickerControllerOriginalImage"] as! UIImage? {
+            imageView.image = image
+        }
+        
+        // Display the image view and text fields 
+        imageView.isHidden = false
+        topText.isHidden = false
+        bottomText.isHidden = false
+        
+        // Dismiss the imagePickerController
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
