@@ -10,14 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBOutlet weak var selectCamera: UIButton!
-    @IBOutlet weak var selectLibrary: UIButton!
+    @IBOutlet weak var selectCamera: UIBarButtonItem!
+    @IBOutlet weak var selectLibrary: UIBarButtonItem!
+    @IBOutlet weak var topText: UITextField!
+    @IBOutlet weak var bottomText: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectCamera.isEnabled = false
-        
-        self.selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        // Hide image and text until editing begins
+        topText.isHidden = true
+        bottomText.isHidden = true
+        imageView.isHidden = true
+    
+        cancelButton.isEnabled = false
+        selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
     }
 
@@ -26,7 +34,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func showPhotoLibraryViewController(_ sender: UIButton) {
+    @IBAction func showPhotoLibraryViewController(_ sender: UIBarButtonItem) {
         // Show the photo library
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -34,7 +42,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
 
-    @IBAction func showCameraViewController(_ sender: UIButton) {
+    @IBAction func showCameraViewController(_ sender: UIBarButtonItem) {
         // Show the camera 
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

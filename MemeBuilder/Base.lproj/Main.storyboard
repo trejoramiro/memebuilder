@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,55 +21,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNQ-Zz-wke">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNQ-Zz-wke">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Meme Builder" id="MMa-Yn-RFJ"/>
+                                    <navigationItem title="Meme Builder" id="MMa-Yn-RFJ">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="FbY-R8-Vrw"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzn-f0-JZX">
-                                <rect key="frame" x="122" y="386" width="131" height="30"/>
-                                <state key="normal" title="Select from Library"/>
-                                <connections>
-                                    <action selector="showPhotoLibraryViewController:" destination="BYZ-38-t0r" eventType="touchDragInside" id="r9z-bs-Wtx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4A-e7-8Kc">
-                                <rect key="frame" x="139" y="267" width="97" height="30"/>
-                                <state key="normal" title="Take a Picture"/>
-                                <connections>
-                                    <action selector="showCameraViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TNO-cC-Vyl"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start by selecting an Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGL-Xb-WeX">
-                                <rect key="frame" x="83" y="141" width="254" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start by selecting an Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGL-Xb-WeX">
+                                <rect key="frame" x="76" y="112" width="254" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9Z-Sb-U9O">
+                                <rect key="frame" x="-7" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="kMt-PC-fkS">
+                                        <connections>
+                                            <action selector="showCameraViewController:" destination="BYZ-38-t0r" id="gUw-bU-ob6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="search" id="orJ-Ga-JEv">
+                                        <connections>
+                                            <action selector="showPhotoLibraryViewController:" destination="BYZ-38-t0r" id="cft-CL-PI2"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJ3-d4-lT8">
+                                <rect key="frame" x="67" y="253" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-f5-Hva">
+                                <rect key="frame" x="139" y="263" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ihg-X8-FeU">
+                                <rect key="frame" x="139" y="351" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="LGL-Xb-WeX" secondAttribute="trailing" constant="22" id="4f3-R9-jrv"/>
-                            <constraint firstItem="t4A-e7-8Kc" firstAttribute="top" secondItem="LGL-Xb-WeX" secondAttribute="bottom" constant="105" id="BHC-70-TWq"/>
-                            <constraint firstItem="Rzn-f0-JZX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="106" id="Blp-VI-dte"/>
-                            <constraint firstItem="LGL-Xb-WeX" firstAttribute="top" secondItem="yNQ-Zz-wke" secondAttribute="bottom" constant="77" id="Cwu-Ry-ZRG"/>
-                            <constraint firstItem="LGL-Xb-WeX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="DOI-bZ-niU"/>
-                            <constraint firstItem="Rzn-f0-JZX" firstAttribute="top" secondItem="t4A-e7-8Kc" secondAttribute="bottom" constant="89" id="Fow-oc-ClH"/>
-                            <constraint firstItem="t4A-e7-8Kc" firstAttribute="top" secondItem="LGL-Xb-WeX" secondAttribute="bottom" constant="105" id="KnZ-Q6-eca"/>
-                            <constraint firstItem="t4A-e7-8Kc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="123" id="Kqa-WK-dG7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LGL-Xb-WeX" secondAttribute="trailing" constant="22" id="LN2-oo-mkR"/>
-                            <constraint firstItem="Rzn-f0-JZX" firstAttribute="top" secondItem="t4A-e7-8Kc" secondAttribute="bottom" constant="89" id="NYM-an-lQr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="t4A-e7-8Kc" secondAttribute="trailing" constant="123" id="XR4-9x-Lo6"/>
-                            <constraint firstItem="LGL-Xb-WeX" firstAttribute="top" secondItem="yNQ-Zz-wke" secondAttribute="bottom" constant="82" id="dNJ-cU-Y12"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rzn-f0-JZX" secondAttribute="trailing" constant="106" id="lOL-RG-6JN"/>
-                            <constraint firstItem="LGL-Xb-WeX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="n2K-63-7cM"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Rzn-f0-JZX" secondAttribute="bottom" constant="251" id="uwE-S7-fkp"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="selectCamera" destination="t4A-e7-8Kc" id="gTD-FY-Obi"/>
-                        <outlet property="selectLibrary" destination="Rzn-f0-JZX" id="lsR-Wo-RzM"/>
+                        <outlet property="bottomText" destination="ihg-X8-FeU" id="B1e-Ev-Yjz"/>
+                        <outlet property="cancelButton" destination="FbY-R8-Vrw" id="ATr-z5-LDB"/>
+                        <outlet property="imageView" destination="tJ3-d4-lT8" id="QUe-BD-0Hn"/>
+                        <outlet property="selectCamera" destination="kMt-PC-fkS" id="dkk-Pz-pxV"/>
+                        <outlet property="selectLibrary" destination="orJ-Ga-JEv" id="KtP-i8-tsI"/>
+                        <outlet property="topText" destination="w7J-f5-Hva" id="g8t-MM-tiZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
