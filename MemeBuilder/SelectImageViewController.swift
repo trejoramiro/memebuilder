@@ -17,6 +17,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,12 +74,20 @@ UINavigationControllerDelegate {
         topText.isHidden = false
         bottomText.isHidden = false
         
+        topText.text = "TOP"
+        bottomText.text = "BOTTOM"
+        
         // Dismiss the imagePickerController
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func showShareViewController(_ sender: UIBarButtonItem) {
+        
+        // Add segue 
     }
 }
 

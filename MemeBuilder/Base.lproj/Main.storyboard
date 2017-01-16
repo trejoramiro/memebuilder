@@ -26,6 +26,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Meme Builder" id="MMa-Yn-RFJ">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="f4L-Ni-yPi">
+                                            <connections>
+                                                <action selector="showShareViewController:" destination="BYZ-38-t0r" id="s3m-Ax-WWj"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="FbY-R8-Vrw">
                                             <connections>
                                                 <action selector="resetView:" destination="BYZ-38-t0r" id="4fV-md-Pbn"/>
@@ -51,7 +56,7 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJ3-d4-lT8">
-                                <rect key="frame" x="67" y="253" width="240" height="128"/>
+                                <rect key="frame" x="38" y="239" width="299" height="159"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-f5-Hva">
@@ -84,6 +89,8 @@
                         <outlet property="imageView" destination="tJ3-d4-lT8" id="QUe-BD-0Hn"/>
                         <outlet property="selectCamera" destination="kMt-PC-fkS" id="dkk-Pz-pxV"/>
                         <outlet property="selectLibrary" destination="orJ-Ga-JEv" id="KtP-i8-tsI"/>
+                        <outlet property="shareButton" destination="f4L-Ni-yPi" id="CM6-9R-HFi"/>
+                        <outlet property="shareMeme" destination="f4L-Ni-yPi" id="1Cm-mp-djq"/>
                         <outlet property="topText" destination="w7J-f5-Hva" id="g8t-MM-tiZ"/>
                     </connections>
                 </viewController>
