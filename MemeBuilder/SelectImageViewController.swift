@@ -25,6 +25,16 @@ UINavigationControllerDelegate {
         topText.isHidden = true
         bottomText.isHidden = true
         imageView.isHidden = true
+        
+        let memeTextAttributes:[String:Any] = [
+            NSStrokeColorAttributeName: UIColor.black,
+            NSForegroundColorAttributeName: UIColor.blue,
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size:40)!,
+            NSStrokeWidthAttributeName: NSNumber(value: 4.0)
+        ]
+        
+        topText.defaultTextAttributes = memeTextAttributes
+        bottomText.defaultTextAttributes = memeTextAttributes
     
         cancelButton.isEnabled = false
         selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
