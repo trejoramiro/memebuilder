@@ -77,6 +77,8 @@ UINavigationControllerDelegate {
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
         
+        cancelButton.isEnabled = true
+        
         // Dismiss the imagePickerController
         dismiss(animated: true, completion: nil)
     }
@@ -85,9 +87,12 @@ UINavigationControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func showShareViewController(_ sender: UIBarButtonItem) {
+    @IBAction func showShareViewController() {
         
         // Add segue 
+        let image = UIImage()
+        let shareViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(shareViewController, animated: true, completion: nil)
     }
 }
 
