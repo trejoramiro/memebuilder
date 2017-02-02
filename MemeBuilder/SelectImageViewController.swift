@@ -18,6 +18,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var message: UILabel!
     
     let textFieldDelegate = TextFieldDelegate()
     
@@ -61,6 +62,8 @@ UINavigationControllerDelegate {
         shareButton.isEnabled = false
         cancelButton.isEnabled = false
         selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        message.text = "Start by Selecting an Image"
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,6 +97,8 @@ UINavigationControllerDelegate {
         imageView.isHidden = true
         
         cancelButton.isEnabled = false
+        
+        message.text = "Start by Selecting an Image"
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -112,6 +117,8 @@ UINavigationControllerDelegate {
         
         cancelButton.isEnabled = true
         shareButton.isEnabled = true
+        
+        message.text = "Edit Placeholder Text"
         
         // Dismiss the imagePickerController
         dismiss(animated: true, completion: nil)
