@@ -64,21 +64,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-f5-Hva">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7J-f5-Hva">
                                 <rect key="frame" x="31" y="257" width="316" height="30"/>
                                 <color key="backgroundColor" red="0.9779091329649513" green="1" blue="0.9797311844230211" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="w7J-f5-Hva" secondAttribute="height" multiplier="299:30" constant="17" id="LIB-y5-Jd4"/>
                                 </constraints>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ihg-X8-FeU">
                                 <rect key="frame" x="31" y="407" width="316" height="30"/>
                                 <color key="backgroundColor" red="0.9779091329649513" green="1" blue="0.9797311844230211" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -115,6 +115,7 @@
                         <outlet property="bottomText" destination="ihg-X8-FeU" id="B1e-Ev-Yjz"/>
                         <outlet property="cancelButton" destination="FbY-R8-Vrw" id="ATr-z5-LDB"/>
                         <outlet property="imageView" destination="tJ3-d4-lT8" id="QUe-BD-0Hn"/>
+                        <outlet property="message" destination="LGL-Xb-WeX" id="Ebt-d8-DOU"/>
                         <outlet property="selectCamera" destination="kMt-PC-fkS" id="dkk-Pz-pxV"/>
                         <outlet property="selectLibrary" destination="orJ-Ga-JEv" id="KtP-i8-tsI"/>
                         <outlet property="shareButton" destination="f4L-Ni-yPi" id="CM6-9R-HFi"/>
