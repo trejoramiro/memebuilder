@@ -19,6 +19,15 @@ UINavigationControllerDelegate {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
+    let textFieldDelegate = TextFieldDelegate()
+    
+    struct Meme {
+        var topText = ""
+        var bottomText = ""
+        var originalImage:UIImage
+        var memedImage:UIImage
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Hide image and text until editing begins
@@ -28,14 +37,28 @@ UINavigationControllerDelegate {
         
         let memeTextAttributes:[String:Any] = [
             NSStrokeColorAttributeName: UIColor.black,
-            NSForegroundColorAttributeName: UIColor.blue,
+            NSForegroundColorAttributeName: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size:40)!,
-            NSStrokeWidthAttributeName: NSNumber(value: 4.0)
+            NSStrokeWidthAttributeName: NSNumber(value: -4.5)
+            
         ]
+        
         
         topText.defaultTextAttributes = memeTextAttributes
         bottomText.defaultTextAttributes = memeTextAttributes
+        
+        topText.textAlignment = .center
+        bottomText.textAlignment = .center
+        
+        topText.adjustsFontSizeToFitWidth = true
+        bottomText.adjustsFontSizeToFitWidth = true
+        topText.minimumFontSize = CGFloat(5)
+        bottomText.minimumFontSize = CGFloat(5)
+        
+        topText.delegate = textFieldDelegate
+        bottomText.delegate = textFieldDelegate
     
+        shareButton.isEnabled = false
         cancelButton.isEnabled = false
         selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
@@ -88,6 +111,7 @@ UINavigationControllerDelegate {
         bottomText.text = "BOTTOM"
         
         cancelButton.isEnabled = true
+        shareButton.isEnabled = true
         
         // Dismiss the imagePickerController
         dismiss(animated: true, completion: nil)
@@ -97,11 +121,46 @@ UINavigationControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    func generateMemedImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
+
+    func save() {
+        // Create the meme
+//        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        //save the image to the device
+    }
+
+    
     @IBAction func showShareViewController() {
         
-        // Add segue 
-        let image = UIImage()
+        // Create memedImage 
+        let memedImage = generateMemedImage()
+        
+        // Generate a memed image
+        let image = Meme(
+            topText: topText.text!,
+            bottomText: bottomText.text!,
+            originalImage: imageView.image!,
+            memedImage: memedImage)
+        
+        // Define an instance of the ActivityController
         let shareViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        shareViewController.completionWithItemsHandler = {
+            activity,completed,items,error in
+            if completed {
+                self.save()
+                self.dismiss(animated: true, completion: nil)
+            }  
+        }
+        
+        // present the ActivityViewController
         present(shareViewController, animated: true, completion: nil)
     }
 }
