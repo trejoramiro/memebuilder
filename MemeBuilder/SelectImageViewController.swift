@@ -23,8 +23,8 @@ UINavigationControllerDelegate {
     let textFieldDelegate = TextFieldDelegate()
     
     struct Meme {
-        var topText = ""
-        var bottomText = ""
+        var topText:String
+        var bottomText:String
         var originalImage:UIImage
         var memedImage:UIImage
     }
@@ -78,10 +78,6 @@ UINavigationControllerDelegate {
         message.text = "Start by Selecting an Image"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     @IBAction func showPhotoLibraryViewController(_ sender: UIBarButtonItem) {
         // Show the photo library
@@ -191,8 +187,11 @@ UINavigationControllerDelegate {
     }
     
     func keyboardWillShow(_ notification:Notification) {
-        
-        view.frame.origin.y = 0 - getKeyboardHeight(notification)
+        print("keyboardWillShow")
+        print(view.frame.origin.y)
+        print(getKeyboardHeight(notification))
+        view.frame.origin.y = view.frame.origin.y - (getKeyboardHeight(notification) / 2)
+        print(view.frame.origin.y)
     }
     
     func keyboardWillHide(_ notification:Notification) {
