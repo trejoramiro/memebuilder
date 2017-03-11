@@ -190,12 +190,12 @@ UINavigationControllerDelegate {
         print("keyboardWillShow")
         print(view.frame.origin.y)
         print(getKeyboardHeight(notification))
-        view.frame.origin.y = view.frame.origin.y - (getKeyboardHeight(notification) / 2)
+        view.frame.origin.y = -(getKeyboardHeight(notification) / 2)
         print(view.frame.origin.y)
-    }
+    } 
     
     func keyboardWillHide(_ notification:Notification) {
-        view.frame.origin.y = view.frame.origin.y + getKeyboardHeight(notification)
+        view.frame.origin.y = 0.0;
     }
     
     func subscribeToKeyboardNotifications() {
