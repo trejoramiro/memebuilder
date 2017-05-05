@@ -65,8 +65,12 @@ UINavigationControllerDelegate {
         
         topText.adjustsFontSizeToFitWidth = true
         bottomText.adjustsFontSizeToFitWidth = true
+        
         topText.minimumFontSize = CGFloat(5)
         bottomText.minimumFontSize = CGFloat(5)
+        
+        topText.clearsOnBeginEditing = true
+        bottomText.clearsOnBeginEditing = true
         
         topText.delegate = textFieldDelegate
         bottomText.delegate = textFieldDelegate
@@ -80,7 +84,7 @@ UINavigationControllerDelegate {
 
 
     @IBAction func showPhotoLibraryViewController(_ sender: UIBarButtonItem) {
-        // Show the photo library
+        // Show photo library
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -88,7 +92,7 @@ UINavigationControllerDelegate {
     }
 
     @IBAction func showCameraViewController(_ sender: UIBarButtonItem) {
-        // Show the camera 
+        // Show camera
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
@@ -104,7 +108,13 @@ UINavigationControllerDelegate {
         bottomText.isHidden = true
         imageView.isHidden = true
         
+        // remove the keyboard if present
+        self.view.endEditing(true)
+        // after cliking cancel, then clicking share leads to a fatal error:
+        // unexpectedly found nil while unwrapping an Optional value
+        
         cancelButton.isEnabled = false
+        shareButton.isEnabled = false
         
         message.text = "Start by Selecting an Image"
     }
@@ -156,13 +166,14 @@ UINavigationControllerDelegate {
         
         // Create memedImage 
         let memedImage = generateMemedImage()
+        print(memedImage)
         
         // Generate a memed image
         let image = Meme(
             topText: topText.text!,
             bottomText: bottomText.text!,
             originalImage: imageView.image!,
-            memedImage: memedImage)
+            memedImage: memedImage) //this is the trigger of the error!
         
         // Define an instance of the ActivityController
         let shareViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -187,9 +198,7 @@ UINavigationControllerDelegate {
     }
     
     func keyboardWillShow(_ notification:Notification) {
-        print("keyboardWillShow")
         print(view.frame.origin.y)
-        print(getKeyboardHeight(notification))
         view.frame.origin.y = -(getKeyboardHeight(notification) / 2)
         print(view.frame.origin.y)
     } 
@@ -209,5 +218,6 @@ UINavigationControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
+    
 }
 

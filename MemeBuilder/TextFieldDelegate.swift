@@ -11,7 +11,8 @@ import UIKit
 
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
-    
+    var topTextFieldIsClean = true
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("Textfield did begin editing")
         // Present the keyboard
@@ -24,9 +25,10 @@ class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("Textfield should return")
-        // Hide the keyboard
         textField.resignFirstResponder()
         return true
     }
+
+    
     
 }
