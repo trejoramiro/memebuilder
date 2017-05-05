@@ -30,20 +30,17 @@ UINavigationControllerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Hide image and text until editing begins
         topText.isHidden = true
         bottomText.isHidden = true
         imageView.isHidden = true
@@ -53,9 +50,7 @@ UINavigationControllerDelegate {
             NSForegroundColorAttributeName: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0),
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size:40)!,
             NSStrokeWidthAttributeName: NSNumber(value: -4.5)
-            
         ]
-        
         
         topText.defaultTextAttributes = memeTextAttributes
         bottomText.defaultTextAttributes = memeTextAttributes
@@ -78,13 +73,11 @@ UINavigationControllerDelegate {
         shareButton.isEnabled = false
         cancelButton.isEnabled = false
         selectCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         message.text = "Start by Selecting an Image"
     }
 
 
     @IBAction func showPhotoLibraryViewController(_ sender: UIBarButtonItem) {
-        // Show photo library
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -92,7 +85,6 @@ UINavigationControllerDelegate {
     }
 
     @IBAction func showCameraViewController(_ sender: UIBarButtonItem) {
-        // Show camera
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
@@ -110,8 +102,6 @@ UINavigationControllerDelegate {
         
         // remove the keyboard if present
         self.view.endEditing(true)
-        // after cliking cancel, then clicking share leads to a fatal error:
-        // unexpectedly found nil while unwrapping an Optional value
         
         cancelButton.isEnabled = false
         shareButton.isEnabled = false
@@ -138,7 +128,6 @@ UINavigationControllerDelegate {
         
         message.text = "Edit Placeholder Text"
         
-        // Dismiss the imagePickerController
         dismiss(animated: true, completion: nil)
     }
     
@@ -157,18 +146,15 @@ UINavigationControllerDelegate {
 
     func save() {
         // Create the meme
-//        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
+        // let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageView.image!, memedImage: memedImage)
         //save the image to the device
     }
 
     
     @IBAction func showShareViewController() {
-        
-        // Create memedImage 
         let memedImage = generateMemedImage()
         print(memedImage)
         
-        // Generate a memed image
         let image = Meme(
             topText: topText.text!,
             bottomText: bottomText.text!,
@@ -186,12 +172,10 @@ UINavigationControllerDelegate {
             }  
         }
         
-        // present the ActivityViewController
         present(shareViewController, animated: true, completion: nil)
     }
     
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-        
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
@@ -208,13 +192,11 @@ UINavigationControllerDelegate {
     }
     
     func subscribeToKeyboardNotifications() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
