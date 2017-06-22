@@ -136,11 +136,18 @@ UINavigationControllerDelegate {
     }
     
     func generateMemedImage() -> UIImage {
+        // Hide toolbar and navbar
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
+        
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+
         return memedImage
     }
 
@@ -153,16 +160,8 @@ UINavigationControllerDelegate {
     
     @IBAction func showShareViewController() {
         let memedImage = generateMemedImage()
-        print(memedImage)
         
-        let image = Meme(
-            topText: topText.text!,
-            bottomText: bottomText.text!,
-            originalImage: imageView.image!,
-            memedImage: memedImage) //this is the trigger of the error!
-        
-        // Define an instance of the ActivityController
-        let shareViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let shareViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         
         shareViewController.completionWithItemsHandler = {
             activity,completed,items,error in
